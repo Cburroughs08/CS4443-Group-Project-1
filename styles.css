@@ -1,0 +1,72 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+/* Container */
+.quiz-container {
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #444;
+}
+
+/* Question */
+.question {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+/* Options */
+.options {
+    list-style: none;
+    padding: 0;
+}
+
+.options li {
+    margin: 10px 0;
+}
+
+.options input {
+    margin-right: 10px;
+}
+
+/* Button */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Result */
+.result {
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Interactive Quiz</h1>
+        <div id="quiz">
+            <div class="question">1. What is the capital of France?</div>
+            <ul class="options">
+                <li><input type="radio" name="q1" value="Paris" id="q1-a"> <label for="q1-a">Paris</label></li>
+                <li><input type="radio" name="q1" value="London" id="q1-b"> <label for="q1-b">London</label></li>
+                <li><input type="radio" name="q1" value="Berlin" id="q1-c"> <label for="q1-c">Berlin</label></li>
+                <li><input type="radio" name="q1" value="Madrid" id="q1-d"> <label for="q1-d">Madrid</label></li>
+            </ul>
+
+            <div class="question">2. What is 2 + 2?</div>
+            <ul class="options">
+                <li><input type="radio" name="q2" value="3" id="q2-a"> <label for="q2-a">3</label></li>
+                <li><input type="radio" name="q2" value="4" id="q2-b"> <label for="q2-b">4</label></li>
+                <li><input type="radio" name="q2" value="5" id="q2-c"> <label for="q2-c">5</label></li>
+                <li><input type="radio" name="q2" value="6" id="q2-d"> <label for="q2-d">6</label></li>
+            </ul>
+
+            <div class="question">3. What is the largest planet in the solar system?</div>
+            <ul class="options">
+                <li><input type="radio" name="q3" value="Earth" id="q3-a"> <label for="q3-a">Earth</label></li>
+                <li><input type="radio" name="q3" value="Mars" id="q3-b"> <label for="q3-b">Mars</label></li>
+                <li><input type="radio" name="q3" value="Jupiter" id="q3-c"> <label for="q3-c">Jupiter</label></li>
+                <li><input type="radio" name="q3" value="Saturn" id="q3-d"> <label for="q3-d">Saturn</label></li>
+            </ul>
+
+            <button class="submit-btn" onclick="checkAnswers()">Submit</button>
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // Correct answers
+        const correctAnswers = {
+            q1: "Paris",
+            q2: "4",
+            q3: "Jupiter"
+        };
+
+        function checkAnswers() {
+            let score = 0;
+
+            // Loop through each question and check the user's answer
+            for (let question in correctAnswers) {
+                const userAnswer = document.querySelector(`input[name="${question}"]:checked`);
+                if (userAnswer && userAnswer.value === correctAnswers[question]) {
+                    score++;
+                }
+            }
+
+            // Display the result
+            const resultDiv = document.getElementById("result");
+            resultDiv.textContent = `You scored ${score} out of ${Object.keys(correctAnswers).length}.`;
+        }
+    </script>
+</body>
+</html>
