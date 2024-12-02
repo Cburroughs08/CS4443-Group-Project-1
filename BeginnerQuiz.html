@@ -11,60 +11,96 @@
         <h1>Beginner Astronomy Quiz</h1>
         <p>Test your knowledge with these fun questions!</p>
     </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+    </div>
+    <p id="progress-text" class="progress-text">Questions answered: 0/5</p>
+
     <div class="quiz-container">
-        <!-- Question 1 -->
+        <!-- Questions -->
         <div class="question">
             <h2>1. What is the largest planet in our solar system?</h2>
             <ul class="options">
-                <li><input type="radio" name="q1" id="q1a" value="a"> <label for="q1a">Earth</label></li>
-                <li><input type="radio" name="q1" id="q1b" value="b"> <label for="q1b">Jupiter</label></li>
-                <li><input type="radio" name="q1" id="q1c" value="c"> <label for="q1c">Mars</label></li>
-                <li><input type="radio" name="q1" id="q1d" value="d"> <label for="q1d">Saturn</label></li>
+                <li><input type="radio" name="q1" value="a"> Earth</li>
+                <li><input type="radio" name="q1" value="b"> Jupiter</li>
+                <li><input type="radio" name="q1" value="c"> Mars</li>
+                <li><input type="radio" name="q1" value="d"> Saturn</li>
             </ul>
         </div>
-        <!-- Question 2 -->
         <div class="question">
             <h2>2. True or False: The Sun is a star.</h2>
             <ul class="options">
-                <li><input type="radio" name="q2" id="q2a" value="true"> <label for="q2a">True</label></li>
-                <li><input type="radio" name="q2" id="q2b" value="false"> <label for="q2b">False</label></li>
+                <li><input type="radio" name="q2" value="true"> True</li>
+                <li><input type="radio" name="q2" value="false"> False</li>
             </ul>
         </div>
-        <!-- Question 3 -->
         <div class="question">
             <h2>3. Which planet is known as the Red Planet?</h2>
             <ul class="options">
-                <li><input type="radio" name="q3" id="q3a" value="a"> <label for="q3a">Venus</label></li>
-                <li><input type="radio" name="q3" id="q3b" value="b"> <label for="q3b">Mars</label></li>
-                <li><input type="radio" name="q3" id="q3c" value="c"> <label for="q3c">Mercury</label></li>
-                <li><input type="radio" name="q3" id="q3d" value="d"> <label for="q3d">Neptune</label></li>
+                <li><input type="radio" name="q3" value="a"> Venus</li>
+                <li><input type="radio" name="q3" value="b"> Mars</li>
+                <li><input type="radio" name="q3" value="c"> Mercury</li>
+                <li><input type="radio" name="q3" value="d"> Neptune</li>
             </ul>
         </div>
-        <!-- Question 4 -->
         <div class="question">
             <h2>4. True or False: There are more stars in the universe than grains of sand on Earth.</h2>
             <ul class="options">
-                <li><input type="radio" name="q4" id="q4a" value="true"> <label for="q4a">True</label></li>
-                <li><input type="radio" name="q4" id="q4b" value="false"> <label for="q4b">False</label></li>
+                <li><input type="radio" name="q4" value="true"> True</li>
+                <li><input type="radio" name="q4" value="false"> False</li>
             </ul>
         </div>
-        <!-- Question 5 -->
         <div class="question">
             <h2>5. What is the closest planet to the Sun?</h2>
             <ul class="options">
-                <li><input type="radio" name="q5" id="q5a" value="a"> <label for="q5a">Venus</label></li>
-                <li><input type="radio" name="q5" id="q5b" value="b"> <label for="q5b">Mercury</label></li>
-                <li><input type="radio" name="q5" id="q5c" value="c"> <label for="q5c">Earth</label></li>
-                <li><input type="radio" name="q5" id="q5d" value="d"> <label for="q5d">Mars</label></li>
+                <li><input type="radio" name="q5" value="a"> Venus</li>
+                <li><input type="radio" name="q5" value="b"> Mercury</li>
+                <li><input type="radio" name="q5" value="c"> Earth</li>
+                <li><input type="radio" name="q5" value="d"> Mars</li>
             </ul>
         </div>
+
+        <!-- Submit Button -->
         <button class="submit-button" onclick="submitQuiz()">Submit Quiz</button>
         <div id="result" class="result"></div>
     </div>
     <footer>
         <p>Interactive Quiz &copy; 2024</p>
     </footer>
+
     <script>
+        const totalQuestions = 5;
+        let answeredQuestions = 0;
+        
+        function updateProgress() {
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+        
+            const percentage = (answeredQuestions / totalQuestions) * 100;
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `Questions answered: ${answeredQuestions}/${totalQuestions}`;
+        }
+        
+        function checkAnsweredQuestions() {
+            answeredQuestions = 0;
+        
+            for (let i = 1; i <= totalQuestions; i++) {
+                const question = document.querySelector(`input[name="q${i}"]:checked`);
+                if (question) {
+                    answeredQuestions++;
+                }
+            }
+        
+            updateProgress();
+        }
+        
+        
+        document.querySelectorAll('input[type="radio"]').forEach((input) => {
+            input.addEventListener('change', checkAnsweredQuestions);
+        });
+        
         function submitQuiz() {
             let correctAnswers = {
                 q1: 'b',
@@ -73,15 +109,18 @@
                 q4: 'true',
                 q5: 'b'
             };
+        
             let score = 0;
+        
             for (let key in correctAnswers) {
                 let answer = document.querySelector(`input[name="${key}"]:checked`);
                 if (answer && answer.value === correctAnswers[key]) {
                     score++;
                 }
             }
+        
             let resultDiv = document.getElementById('result');
-            resultDiv.textContent = `You scored ${score} out of 5!`;
+            resultDiv.textContent = `You scored ${score} out of ${totalQuestions}!`;
             resultDiv.style.display = 'block';
         }
     </script>
