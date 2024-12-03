@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate PHP & MySQL Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Intermediate PHP & MySQL Quiz</h1>
+        <p>Test your knowledge of PHP and MySQL with these intermediate questions!</p>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+    </div>
+    <p id="progress-text" class="progress-text">Questions answered: 0/8</p>
+
+    <div class="quiz-container">
+        <!-- Questions -->
+        <div class="question">
+            <h2>1. How do you perform a prepared statement in PHP using the mysqli extension?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q1" value="a"> By using the connect() function only</li>
+                <li><input type="radio" name="q1" value="b"> By using prepare(), bind_param(), execute(), and get_result() functions</li>
+                <li><input type="radio" name="q1" value="c"> By using query() and fetch() functions</li>
+                <li><input type="radio" name="q1" value="d"> By writing SQL directly without any placeholders</li>
+            </ul>
+        </div>
+        <div class="question">
+            <h2>2. How do you connect to a MySQL database in PHP using the mysqli extension?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q2" value="a"> Using mysqli_connect() with hostname, username, password, and database name</li>
+                <li><input type="radio" name="q2" value="b"> By calling the connect() method</li>
+                <li><input type="radio" name="q2" value="c"> Using a PHP variable for the database connection</li>
+                <li><input type="radio" name="q2" value="d"> No connection required</li>
+            </ul>
+        </div>
+        <div class="question">
+            <h2>3. True or False: The mysql_ functions are deprecated in PHP.</h2>
+            <ul class="options">
+                <li><input type="radio" name="q3" value="true"> True</li>
+                <li><input type="radio" name="q3" value="false"> False</li>
+            </ul>
+        </div>
+        <div class="question">
+            <h2>4. How do you perform a full-text search in MySQL?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q4" value="a"> Using LIKE() function</li>
+                <li><input type="radio" name="q4" value="b"> Using the MATCH() and AGAINST() functions</li>
+                <li><input type="radio" name="q4" value="c"> By creating indexes manually</li>
+                <li><input type="radio" name="q4" value="d"> Using REGEXP() function</li>
+            </ul>
+        </div>
+        <div class="question">
+            <h2>5. How do you handle errors in MySQL and PHP?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q5" value="a"> Using try-catch blocks for exception handling</li>
+                <li><input type="radio" name="q5" value="b"> Using error_reporting() function to display errors</li>
+                <li><input type="radio" name="q5" value="c"> Using echo to display error messages</li>
+                <li><input type="radio" name="q5" value="d"> Both a and b</li>
+            </ul>
+        </div>
+        <div class="question">
+            <h2>6. True or False: The mysqli_fetch_array() function returns both an associative array and a numeric array.</h2>
+            <ul class="options">
+                <li><input type="radio" name="q6" value="true"> True</li>
+                <li><input type="radio" name="q6" value="false"> False</li>
+            </ul>
+        </div>
+        <div class="question">
+            <h2>7. What is a stored procedure in MySQL?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q7" value="a"> A function that stores SQL queries to execute later with parameters</li>
+                <li><input type="radio" name="q7" value="b"> A type of index for faster searches</li>
+                <li><input type="radio" name="q7" value="c"> A prepared SQL query with dynamic parameters only</li>
+                <li><input type="radio" name="q7" value="d"> A method of optimizing SELECT queries</li>
+            </ul>
+        </div>
+        <div class="question">
+            <h2>8. What is the use of the DATE_FORMAT() function in MySQL?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q8" value="a"> To format dates and times into a specific display format</li>
+                <li><input type="radio" name="q8" value="b"> To perform date arithmetic</li>
+                <li><input type="radio" name="q8" value="c"> To store date values in custom formats</li>
+                <li><input type="radio" name="q8" value="d"> To convert strings to date values</li>
+            </ul>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="submit-button" onclick="submitQuiz()">Submit Quiz</button>
+        <div id="result" class="result"></div>
+    </div>
+    <footer>
+        <p>Interactive Quiz &copy; 2024</p>
+    </footer>
+
+    <script>
+        const totalQuestions = 8;
+        let answeredQuestions = 0;
+    
+        function updateProgress() {
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+    
+            const percentage = (answeredQuestions / totalQuestions) * 100;
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `Questions answered: ${answeredQuestions}/${totalQuestions}`;
+        }
+    
+        function checkAnsweredQuestions() {
+            answeredQuestions = 0;
+    
+            for (let i = 1; i <= totalQuestions; i++) {
+                const question = document.querySelector(`input[name="q${i}"]:checked`);
+                if (question) {
+                    answeredQuestions++;
+                }
+            }
+    
+            updateProgress();
+        }
+    
+        document.querySelectorAll('input[type="radio"]').forEach((input) => {
+            input.addEventListener('change', checkAnsweredQuestions);
+        });
+    
+        function submitQuiz() {
+            let correctAnswers = {
+                q1: 'b', 
+                q2: 'a',  
+                q3: 'true',  
+                q4: 'b',  
+                q5: 'd',  
+                q6: 'true',  
+                q7: 'a',  
+                q8: 'a'   
+            };
+    
+            let score = 0;
+    
+            for (let key in correctAnswers) {
+                let answer = document.querySelector(`input[name="${key}"]:checked`);
+                if (answer && answer.value === correctAnswers[key]) {
+                    score++;
+                }
+            }
+    
+            let resultDiv = document.getElementById('result');
+            resultDiv.textContent = `You scored ${score} out of ${totalQuestions}!`;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+    
+</body>
+</html>

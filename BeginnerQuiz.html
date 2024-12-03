@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beginner Quiz</title>
+    <title>Beginner PHP Quiz</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Beginner Astronomy Quiz</h1>
-        <p>Test your knowledge with these fun questions!</p>
+        <h1>Beginner PHP Quiz</h1>
+        <p>Test your knowledge of basic PHP concepts!</p>
     </header>
 
     <!-- Progress Bar -->
@@ -21,44 +21,44 @@
     <div class="quiz-container">
         <!-- Questions -->
         <div class="question">
-            <h2>1. What is the largest planet in our solar system?</h2>
+            <h2>1. What does PHP stand for?</h2>
             <ul class="options">
-                <li><input type="radio" name="q1" value="a"> Earth</li>
-                <li><input type="radio" name="q1" value="b"> Jupiter</li>
-                <li><input type="radio" name="q1" value="c"> Mars</li>
-                <li><input type="radio" name="q1" value="d"> Saturn</li>
+                <li><input type="radio" name="q1" value="a"> Personal Home Page</li>
+                <li><input type="radio" name="q1" value="b"> PHP: Hypertext Preprocessor</li>
+                <li><input type="radio" name="q1" value="c"> Private Hypertext Preprocessor</li>
+                <li><input type="radio" name="q1" value="d"> Personal Hypertext Programming</li>
             </ul>
         </div>
         <div class="question">
-            <h2>2. True or False: The Sun is a star.</h2>
+            <h2>2. True or False: PHP is a server-side scripting language.</h2>
             <ul class="options">
                 <li><input type="radio" name="q2" value="true"> True</li>
                 <li><input type="radio" name="q2" value="false"> False</li>
             </ul>
         </div>
         <div class="question">
-            <h2>3. Which planet is known as the Red Planet?</h2>
+            <h2>3. How do you declare a variable in PHP?</h2>
             <ul class="options">
-                <li><input type="radio" name="q3" value="a"> Venus</li>
-                <li><input type="radio" name="q3" value="b"> Mars</li>
-                <li><input type="radio" name="q3" value="c"> Mercury</li>
-                <li><input type="radio" name="q3" value="d"> Neptune</li>
+                <li><input type="radio" name="q3" value="a"> var $variable_name = value;</li>
+                <li><input type="radio" name="q3" value="b"> let $variable_name = value;</li>
+                <li><input type="radio" name="q3" value="c"> $variable_name = value;</li>
+                <li><input type="radio" name="q3" value="d"> variable_name = value;</li>
             </ul>
         </div>
         <div class="question">
-            <h2>4. True or False: There are more stars in the universe than grains of sand on Earth.</h2>
+            <h2>4. True or False: PHP can be embedded into HTML.</h2>
             <ul class="options">
                 <li><input type="radio" name="q4" value="true"> True</li>
                 <li><input type="radio" name="q4" value="false"> False</li>
             </ul>
         </div>
         <div class="question">
-            <h2>5. What is the closest planet to the Sun?</h2>
+            <h2>5. What is the correct way to include a PHP file in another PHP file?</h2>
             <ul class="options">
-                <li><input type="radio" name="q5" value="a"> Venus</li>
-                <li><input type="radio" name="q5" value="b"> Mercury</li>
-                <li><input type="radio" name="q5" value="c"> Earth</li>
-                <li><input type="radio" name="q5" value="d"> Mars</li>
+                <li><input type="radio" name="q5" value="a"> include('filename.php');</li>
+                <li><input type="radio" name="q5" value="b"> import('filename.php');</li>
+                <li><input type="radio" name="q5" value="c"> require('filename.php');</li>
+                <li><input type="radio" name="q5" value="d"> append('filename.php');</li>
             </ul>
         </div>
 
@@ -105,9 +105,9 @@
             let correctAnswers = {
                 q1: 'b',
                 q2: 'true',
-                q3: 'b',
+                q3: 'c',
                 q4: 'true',
-                q5: 'b'
+                q5: 'a'
             };
         
             let score = 0;

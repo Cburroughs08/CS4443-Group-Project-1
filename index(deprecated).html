@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Interactive Quiz!</h1>
+        <p>Choose your difficulty level to get started</p>
+    </header>
+    <div class="difficulty-container">
+        <button class="difficulty-button" onclick="startQuiz('beginner')">Beginner</button>
+        <button class="difficulty-button" onclick="startQuiz('intermediate')">Intermediate</button>
+        <button class="difficulty-button" onclick="startQuiz('advanced')">Advanced</button>
+    </div>
+    
+    <div id="quiz-container"></div>
+
+    <footer>
+        <p>Interactive Quiz &copy; 2024</p>
+    </footer>
+    
+    <script src="quizData.js"></script>
+    <script>
+        let selectedLevel = '';
+        let questions = [];
+
+        function startQuiz(level) {
+            selectedLevel = level;
+            questions = quizData[level];
+            generateQuiz();
+        }
+
+        function generateQuiz() {
+            let quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = '';
+
+            questions.forEach((question, index) => {
+                let questionDiv = document.createElement('div');
+                questionDiv.classList.add('question');
+                
+                let questionText = document.createElement('p');
+                questionText.innerHTML = `${index + 1}. ${question.question}`;
+                questionDiv.appendChild(questionText);
+                
+                question.answers.forEach((answer, answerIndex) => {
+                    let answerLabel = document.createElement('label');
+                    let answerInput = document.createElement('input');
+                    answerInput.type = 'radio';
+                    answerInput.name = `question${index}`;
+                    answerInput.value = answer;
+                    answerLabel.appendChild(answerInput);
+                    answerLabel.innerHTML += answer;
+                    questionDiv.appendChild(answerLabel);
+                    questionDiv.appendChild(document.createElement('br'));
+                });
+
+                quizContainer.appendChild(questionDiv);
+            });
+
+            let submitButton = document.createElement('button');
+            submitButton.innerHTML = 'Submit Quiz';
+            submitButton.onclick = checkAnswers;
+            quizContainer.appendChild(submitButton);
+        }
+
+        function checkAnswers() {
+            let score = 0;
+
+            questions.forEach((question, index) => {
+                let selectedAnswer = document.querySelector(`input[name="question${index}"]:checked`);
+
+                if (selectedAnswer && selectedAnswer.value === question.correctAnswer) {
+                    score++;
+                }
+            });
+
+            alert(`Your score: ${score} out of ${questions.length}`);
+        }
+    </script>
+</body>
+</html>
