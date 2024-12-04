@@ -78,6 +78,7 @@
                     <li><input type="radio" disabled name="q7" value="d"> By using the JOIN statement to combine data</li>
                 </ul>
             </div>
+            <button class="submit-button" onclick="menu()">Quiz Menu</button>
 
         </div>
     </div>
@@ -85,10 +86,15 @@
         const score = sessionStorage.getItem('quizScore');
         const totalQuestions = 7;
         const percentage = (score / totalQuestions) * 100;
+        let roundedPercentage = percentage.toFixed(2);
 
         const resultElement = document.getElementById('result');
 
-        resultElement.textContent = `You scored ${score} out of ${totalQuestions}! (${percentage}%)`;
+        resultElement.textContent = `You scored ${score} out of ${totalQuestions}! (${roundedPercentage}%)`;
+
+        function menu() {
+            window.location.href = 'InteractiveQuiz.html';
+        }
 
     </script>
   </body>
