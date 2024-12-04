@@ -151,6 +151,9 @@
             let resultDiv = document.getElementById('result');
             resultDiv.textContent = `You scored ${score} out of ${totalQuestions}!`;
             resultDiv.style.display = 'block';
+
+            sessionStorage.setItem('quizScore', score);
+            window.location.href = 'result_intermediate.html';
         }
     </script>
     
