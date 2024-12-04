@@ -83,6 +83,7 @@
                     <li><input type="radio" disabled name="q8" value="d"> To convert strings to date values</li>
                 </ul>
             </div>
+            <button class="submit-button" onclick="menu()">Quiz Menu</button>
 
         </div>
     </div>
@@ -94,6 +95,10 @@
         const resultElement = document.getElementById('result');
 
         resultElement.textContent = `You scored ${score} out of ${totalQuestions}! (${percentage}%)`;
+
+        function menu() {
+            window.location.href = 'InteractiveQuiz.html';
+        }
 
     </script>
   </body>

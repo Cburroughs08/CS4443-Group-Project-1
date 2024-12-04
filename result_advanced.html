@@ -78,6 +78,7 @@
                     <li><input type="radio" disabled name="q7" value="d"> By using the JOIN statement to combine data</li>
                 </ul>
             </div>
+            <button class="submit-button" onclick="menu()">Quiz Menu</button>
 
         </div>
     </div>
@@ -89,6 +90,10 @@
         const resultElement = document.getElementById('result');
 
         resultElement.textContent = `You scored ${score} out of ${totalQuestions}! (${percentage}%)`;
+
+        function menu() {
+            window.location.href = 'InteractiveQuiz.html';
+        }
 
     </script>
   </body>

@@ -56,6 +56,7 @@
                   <li><input type="radio" disabled name="q5" value="d"> append('filename.php');</li>
               </ul>
           </div>
+          <button class="submit-button" onclick="menu()">Quiz Menu</button>
 
         </div>
     </div>
@@ -67,6 +68,11 @@
         const resultElement = document.getElementById('result');
 
         resultElement.textContent = `You scored ${score} out of ${totalQuestions}! (${percentage}%)`;
+
+        function menu() {
+            window.location.href = 'InteractiveQuiz.html';
+        }
+        
 
     </script>
   </body>
