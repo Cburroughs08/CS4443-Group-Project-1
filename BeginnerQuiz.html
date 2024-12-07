@@ -6,11 +6,13 @@
     <title>Beginner PHP Quiz</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="countdown()">
     <header>
         <h1>Beginner PHP Quiz</h1>
         <p>Test your knowledge of basic PHP concepts!</p>
     </header>
+
+    <div id="timer">Test</div>
 
     <!-- Progress Bar -->
     <div class="progress-container">
@@ -71,6 +73,24 @@
     </footer>
 
     <script>
+
+        function countdown(){
+            var expireTime = new Date().getTime() + 180000;
+            var count = setInterval(function() {
+            var currentTime = new Date().getTime();
+            var distance = expireTime - currentTime;
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            let clock = document.querySelector("#timer");
+            clock.innerText = minutes + ":" + seconds;
+
+            if (distance < 0) {
+                clearInterval(count);
+                clock.innerText = "Time's Up!";
+                return;
+            }
+        });}
+
         const totalQuestions = 5;
         let answeredQuestions = 0;
         
