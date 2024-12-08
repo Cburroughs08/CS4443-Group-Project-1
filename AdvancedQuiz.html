@@ -6,11 +6,13 @@
     <title>Advanced MySQL Quiz</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="countdown()">
     <header>
         <h1>Advanced MySQL Quiz</h1>
         <p>Test your advanced knowledge of MySQL with these challenging questions!</p>
     </header>
+
+    <div id="timer"></div>
 
     <!-- Progress Bar -->
     <div class="progress-container">
@@ -93,6 +95,32 @@
     </footer>
 
     <script>
+
+        function countdown(){
+            var currentTime = new Date();
+            var expireTime = currentTime;
+            expireTime.setMinutes(currentTime.getMinutes() + 10);
+
+            function addZero(i) {
+                if (i < 10) {i = "0" + i}
+                    return i;
+            }
+
+            var count = setInterval(function() {
+            currentTime = new Date();
+            var distance = new Date(expireTime - currentTime);
+            var minutes = distance.getMinutes();
+            var seconds = addZero(distance.getSeconds());
+            let clock = document.querySelector("#timer");
+            clock.innerText = "Time Left: " + minutes + ":" + seconds;
+
+            if (distance < 0) {
+                clearInterval(count);
+                clock.innerText = "Time's Up!";
+                submitQuiz();
+            }
+        });}
+
         const totalQuestions = 7;
         let answeredQuestions = 0;
 
