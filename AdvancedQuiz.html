@@ -100,27 +100,10 @@
             var currentTime = new Date();
             var expireTime = currentTime;
             expireTime.setMinutes(currentTime.getMinutes() + 10);
-            let clock = document.querySelector("#timer");
 
             function addZero(i) {
                 if (i < 10) {i = "0" + i}
                     return i;
-            }
-
-            function oneMinute(mins){
-
-                if (mins < 1){
-                clock.style.color = "red";
-                }
-            }
-
-            function timeOut(timeDiff, interval){
-
-                if (timeDiff < 0) {
-                clock.innerText = "Time's Up!";
-                clearInterval(interval);
-                submitQuiz();
-                }
             }
 
             var count = setInterval(function() {
@@ -128,12 +111,19 @@
             var distance = new Date(expireTime - currentTime);
             var minutes = distance.getMinutes();
             var seconds = addZero(distance.getSeconds());
-            oneMinute(minutes);
+            let clock = document.querySelector("#timer");
 
             clock.innerText = "Time Left: " + minutes + ":" + seconds;
 
-             timeOut(distance, count);
+             if (minutes < 1){
+                clock.style.color = "red";
+            }
 
+            if (distance < 0) {
+                clearInterval(count);
+                clock.innerText = "Time's Up!";
+                submitQuiz();
+            }
         });}
 
         const totalQuestions = 7;
