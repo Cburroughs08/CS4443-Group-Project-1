@@ -6,13 +6,24 @@
     <title>Advanced MySQL Quiz</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="countdown()">
+<body onload="pageLoad()">
     <header>
         <h1>Advanced MySQL Quiz</h1>
         <p>Test your advanced knowledge of MySQL with these challenging questions!</p>
     </header>
 
+    <div class="difficulty-container">
+    <button id="startButton" class="difficulty-button" onclick="start()">Start</button>
+    </div>
+
     <div id="timer"></div>
+
+    <div id="quizPopup" class="popup">
+        <div class="popup-content">
+            <p class="popup-text">Time's Up!</p>
+            <button class="submit-button" onclick="submitQuiz()">Submit Quiz</button>
+        </div>
+    </div>
 
     <!-- Progress Bar -->
     <div class="progress-container">
@@ -96,6 +107,30 @@
 
     <script>
 
+        let progress = document.querySelector(".progress-container");
+        let quiz = document.querySelector(".quiz-container");
+        let text = document.querySelector(".progress-text");
+        let button = document.querySelector("#startButton");
+
+        function pageLoad(){
+            progress.style.display = "none";
+            quiz.style.display = "none";
+            text.style.display = "none";
+        }
+
+        function start(){
+            button.style.display = "none";
+            progress.style.display = "block";
+            quiz.style.display = "block";
+            text.style.display = "block";
+            countdown();
+        }
+
+        let popup = document.querySelector("#quizPopup");
+        function endMessage(){
+            popup.style.display = "block";
+        }
+
         function countdown(){
             var currentTime = new Date();
             var expireTime = currentTime;
@@ -117,9 +152,9 @@
             function timeOut(timeDiff, interval){
 
                 if (timeDiff < 0) {
-                clock.innerText = "Time's Up!";
+                clock.style.display="none";
                 clearInterval(interval);
-                submitQuiz();
+                endMessage();
                 }
             }
 
