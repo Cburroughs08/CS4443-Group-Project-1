@@ -117,7 +117,12 @@
             var minutes = distance.getMinutes();
             var seconds = addZero(distance.getSeconds());
             let clock = document.querySelector("#timer");
+            
             clock.innerText = "Time Left: " + minutes + ":" + seconds;
+
+            if (minutes < 1){
+                clock.style.color = "red";
+            }
 
             if (distance < 0) {
                 clearInterval(count);
